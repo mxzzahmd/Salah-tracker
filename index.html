@@ -34,14 +34,24 @@
         </section>
 
         <section id="quran-section">
-            <h2>Quran Recitation</h2>
-            <select id="surah-select" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ccc; font-weight:bold;"></select>
-            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                <input type="number" id="verse-start" placeholder="From Verse">
-                <input type="number" id="verse-end" placeholder="To Verse">
-            </div>
-            <button onclick="saveRecitation()" style="width:100%;">Save Progress</button>
-        </section>
+    <h2>Quran Recitation</h2>
+    
+    <label for="surah-select" style="display:block; font-size:12px; margin-bottom:4px; color:#555; text-align:left;">Select Surah:</label>
+    <select id="surah-select" onchange="updateVerseSelectors()" style="width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:1px solid #ccc; font-weight:bold;"></select>
+    
+    <div style="display: flex; gap: 10px; margin-bottom: 12px;">
+        <div style="flex: 1; text-align: left;">
+            <label for="verse-start" style="font-size:12px; color:#555;">From Verse:</label>
+            <select id="verse-start" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;"></select>
+        </div>
+        <div style="flex: 1; text-align: left;">
+            <label for="verse-end" style="font-size:12px; color:#555;">To Verse:</label>
+            <select id="verse-end" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc Pap;"></select>
+        </div>
+    </div>
+    
+    <button onclick="saveRecitation()" style="width:100%;">Save Progress</button>
+</section>
 
         <section id="history-section" style="margin-top:25px; border-top:1px solid #ccc; padding-top:15px;">
             <h2>Recitation History</h2>
