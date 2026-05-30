@@ -14,28 +14,38 @@
         <h1>Prayer & Recitation</h1>
         <p id="date-display"></p>
 
-        <button id="notify-btn" onclick="requestNotificationPermission()" style="width:100%; background:#2d5a27; color:white; margin-bottom:15px;">🔔 Enable Daily Reminders</button>
+        <section id="location-section" style="margin-bottom: 15px; background: #f9f9f9; padding: 10px; border-radius: 8px;">
+            <input type="text" id="city-input" placeholder="Enter City (e.g., London)" style="margin-bottom:5px;">
+            <input type="text" id="country-input" placeholder="Enter Country (e.g., UK)" style="margin-bottom:5px;">
+            <button onclick="fetchPrayerTimes()" style="width:100%; font-size:12px; padding:6px;">Set Location & Times</button>
+        </section>
+
+        <button id="notify-btn" onclick="requestNotificationPermission()" style="width:100%; background:#2d5a27; color:white; margin-bottom:15px;">🔔 Enable Dynamic Notifications</button>
 
         <section id="prayer-section">
-            <h2>Prayers</h2>
+            <h2>Today's Prayers</h2>
             <div class="button-grid">
-                <button id="btn-Fajr" onclick="togglePrayer('Fajr')">Fajr</button>
-                <button id="btn-Dhuhr" onclick="togglePrayer('Dhuhr')">Dhuhr</button>
-                <button id="btn-Asr" onclick="togglePrayer('Asr')">Asr</button>
-                <button id="btn-Maghrib" onclick="togglePrayer('Maghrib')">Maghrib</button>
-                <button id="btn-Isha" onclick="togglePrayer('Isha')">Isha</button>
+                <button id="btn-Fajr" onclick="togglePrayer('Fajr')">Fajr <span id="time-Fajr" class="ptime">--:--</span></button>
+                <button id="btn-Dhuhr" onclick="togglePrayer('Dhuhr')">Dhuhr <span id="time-Dhuhr" class="ptime">--:--</span></button>
+                <button id="btn-Asr" onclick="togglePrayer('Asr')">Asr <span id="time-Asr" class="ptime">--:--</span></button>
+                <button id="btn-Maghrib" onclick="togglePrayer('Maghrib')">Maghrib <span id="time-Maghrib" class="ptime">--:--</span></button>
+                <button id="btn-Isha" onclick="togglePrayer('Isha')">Isha <span id="time-Isha" class="ptime">--:--</span></button>
             </div>
         </section>
 
         <section id="quran-section">
             <h2>Quran Recitation</h2>
-            <input type="number" id="verse-count" placeholder="Verses read today">
-            <button onclick="saveRecitation()">Save Progress</button>
+            <select id="surah-select" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ccc; font-weight:bold;"></select>
+            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                <input type="number" id="verse-start" placeholder="From Verse">
+                <input type="number" id="verse-end" placeholder="To Verse">
+            </div>
+            <button onclick="saveRecitation()" style="width:100%;">Save Progress</button>
         </section>
 
         <section id="history-section" style="margin-top:25px; border-top:1px solid #ccc; padding-top:15px;">
             <h2>Recitation History</h2>
-            <ul id="history-list" style="text-align:left; padding-left:20px; color:#555;"></ul>
+            <ul id="history-list" style="text-align:left; padding-left:15px; color:#555; font-size:14px; max-height:180px; overflow-y:auto;"></ul>
         </section>
     </div>
 
