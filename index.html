@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Prayer & Recitation</h1>
+        <p id="date-display"></p>
+
+        <section id="prayer-section">
+            <h2>Prayers</h2>
+            <div class="button-grid">
+                <button onclick="togglePrayer('Fajr')">Fajr</button>
+                <button onclick="togglePrayer('Dhuhr')">Dhuhr</button>
+                <button onclick="togglePrayer('Asr')">Asr</button>
+                <button onclick="togglePrayer('Maghrib')">Maghrib</button>
+                <button onclick="togglePrayer('Isha')">Isha</button>
+            </div>
+        </section>
+
+        <section id="quran-section">
+            <h2>Quran Recitation</h2>
+            <input type="number" id="verse-count" placeholder="Verses read today">
+            <button onclick="saveRecitation()">Save Progress</button>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
