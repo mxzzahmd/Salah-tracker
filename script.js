@@ -102,7 +102,7 @@ function fetchPrayerTimes() {
     localStorage.setItem('city', city);
     localStorage.setItem('country', country);
 
-    fetch(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=2`)
+    fetch(`https://api.aladhan.com/v1/timingsByCity?city=${city}&country=${country}&method=2&school=1`)
     .then(res => res.json())
     .then(data => {
         if(data.data) {
