@@ -5,20 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Tracker</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
     <div class="container">
         <h1>Prayer & Recitation</h1>
         <p id="date-display"></p>
 
+        <button id="notify-btn" onclick="requestNotificationPermission()" style="width:100%; background:#2d5a27; color:white; margin-bottom:15px;">🔔 Enable Daily Reminders</button>
+
         <section id="prayer-section">
             <h2>Prayers</h2>
             <div class="button-grid">
-                <button onclick="togglePrayer('Fajr')">Fajr</button>
-                <button onclick="togglePrayer('Dhuhr')">Dhuhr</button>
-                <button onclick="togglePrayer('Asr')">Asr</button>
-                <button onclick="togglePrayer('Maghrib')">Maghrib</button>
-                <button onclick="togglePrayer('Isha')">Isha</button>
+                <button id="btn-Fajr" onclick="togglePrayer('Fajr')">Fajr</button>
+                <button id="btn-Dhuhr" onclick="togglePrayer('Dhuhr')">Dhuhr</button>
+                <button id="btn-Asr" onclick="togglePrayer('Asr')">Asr</button>
+                <button id="btn-Maghrib" onclick="togglePrayer('Maghrib')">Maghrib</button>
+                <button id="btn-Isha" onclick="togglePrayer('Isha')">Isha</button>
             </div>
         </section>
 
@@ -27,7 +32,13 @@
             <input type="number" id="verse-count" placeholder="Verses read today">
             <button onclick="saveRecitation()">Save Progress</button>
         </section>
+
+        <section id="history-section" style="margin-top:25px; border-top:1px solid #ccc; padding-top:15px;">
+            <h2>Recitation History</h2>
+            <ul id="history-list" style="text-align:left; padding-left:20px; color:#555;"></ul>
+        </section>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
