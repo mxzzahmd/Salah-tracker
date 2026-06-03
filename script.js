@@ -211,11 +211,19 @@ function requestNotificationPermission() {
     });
 }
 
-// Fire actual OS payload notifications
+// Replace the old sendPushNotification function at the bottom of script.js with this:
 function sendPushNotification(title, msg) {
     if (Notification.permission === 'granted' && 'serviceWorker' in navigator) {
         navigator.serviceWorker.ready.then(registration => {
-            registration.showNotification(title, { body: msg, icon: "icon.png" });
+            // Send a safe cross-script message containing the alert data to sw.js
+            if (registration.active) {
+                registration.active.postMessage({
+                    type: 'SHOW_NOTIFICATION',
+                    title: title,
+                    body: msg,
+                    icon: 'icon.png'
+                });
+            }
         });
     }
 }
