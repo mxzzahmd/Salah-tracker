@@ -7,7 +7,7 @@ const quranData = [
 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 document.getElementById('date-display').innerText = new Date().toLocaleDateString(undefined, options);
 
-// Centralized Startup Loop
+// Replace the DOMContentLoaded block in your script.js with this:
 document.addEventListener("DOMContentLoaded", () => {
     const surahSelect = document.getElementById('surah-select');
     
@@ -19,13 +19,28 @@ document.addEventListener("DOMContentLoaded", () => {
         surahSelect.appendChild(opt);
     });
 
-    // 2. Setup the initial verse selectors (Default to Al-Fatihah numbers)
+    // 2. Setup the initial verse selectors
     updateVerseSelectors();
 
-    // 3. Load active prayer button checkbox highlights
+    // --- NEW: AUTOMATIC DAILY PRAYER RESET LOGIC ---
+    const todayStr = new Date().toDateString(); // e.g., "Wed Jun 03 2026"
+    const lastSavedDate = localStorage.getItem('lastSavedDate');
+
+    if (lastSavedDate !== todayStr) {
+        // It's a brand new day! Wipe out yesterday's prayer states
+        ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'].forEach(prayer => {
+            localStorage.setItem(prayer, 'false');
+        });
+        // Save today's date so it doesn't reset again until tomorrow
+        localStorage.setItem('lastSavedDate', todayStr);
+    }
+
+    // 3. Load active prayer button checkboxes (Will accurately be unselected on a new day)
     ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'].forEach(prayer => {
         if (localStorage.getItem(prayer) === 'true') {
             document.getElementById(`btn-${prayer}`).classList.add('active');
+        } else {
+            document.getElementById(`btn-${prayer}`).classList.remove('active');
         }
     });
 
